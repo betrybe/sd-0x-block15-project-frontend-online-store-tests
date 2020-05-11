@@ -1,7 +1,7 @@
 import * as api from '../services/api';
 import mockedCategoriesResult from '../__mocks__/categories';
 
-describe('Implementar módulo de acesso à API do Mercado Livre', () => {
+describe('Requisito 1', () => {
   it('getCategories', () => {
     const mockFetchPromise = Promise.resolve({
       json: () => Promise.resolve(mockedCategoriesResult)

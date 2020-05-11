@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import App from '../App';
 
-describe('Criar página de listagem de produtos vazia', () => {
+describe('Requisito 2', () => {
   it('render without crash', () => {
     render(<App />);
   });
