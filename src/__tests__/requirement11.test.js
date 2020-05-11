@@ -13,7 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult)
 );
 
-describe('Requisito 11', () => {
+describe('Avaliar e comentar acerca de um produto em sua tela de exibição detalhada', () => {
   it('evaluate product from product details page', async () => {
     const evaluationContent = 'Esta é uma avaliação sobre o produto realizada na tela de detalhe.';
     render(<App />);

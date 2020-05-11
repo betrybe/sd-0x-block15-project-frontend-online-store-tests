@@ -13,7 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult)
 );
 
-describe('Requisito 6', () => {
+describe('Selecionar uma categoria e ver somente produtos daquela categoria', () => {
   it('should search products by category and show them in the page', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
