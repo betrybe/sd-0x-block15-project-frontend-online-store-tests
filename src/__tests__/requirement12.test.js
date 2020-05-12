@@ -13,7 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult)
 );
 
-describe('Finalizar compra, vendo um resumo dela, preenchendo os meus dados e escolhendo a forma de pagamento', () => {
+describe('Requisito 12', () => {
   it('should buy products from shopping cart list', async () => {
     const fullName = 'my full name';
     const email ='my@email.com';
