@@ -13,7 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult)
 );
 
-describe('Requisito 7', () => {
+describe('Clicar na exibição resumida de um produto e ir para uma tela com sua exibição detalhada', () => {
   it('should show product details', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());

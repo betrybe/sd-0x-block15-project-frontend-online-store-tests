@@ -13,7 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult)
 );
 
-describe('Requisito 14', () => {
+describe('A quantidade de produtos adicionados ao carrinho deve ser limitada pela quantidade disponível em estoque', () => {
   it('should increase quantity in shopping cart list until the availability quantity', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
