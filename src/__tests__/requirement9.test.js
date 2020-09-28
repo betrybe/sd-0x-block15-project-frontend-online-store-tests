@@ -7,24 +7,33 @@ import mockedQueryResult from '../__mocks__/query';
 
 jest.mock('../services/api');
 api.getCategories.mockImplementation(
-  () => Promise.resolve(mockedCategoriesResult)
+  () => Promise.resolve(mockedCategoriesResult),
 );
 api.getProductsFromCategoryAndQuery.mockImplementation(
-  () => Promise.resolve(mockedQueryResult)
+  () => Promise.resolve(mockedQueryResult),
 );
 
-describe('Adicionar um produto ao carrinho a partir de sua tela de exibição detalhada', () => {
-  it('should add product to shopping cart from product details page', async () => {
+describe(`Adicionar um produto ao carrinho a partir de sua tela de exibição
+          detalhada`, () => {
+  it('Adiciona um produto ao carrinho da sua tela de detalhes', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(api.getProductsFromCategoryAndQuery).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('product-detail-link')[0]);
-    await waitFor(() => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(mockedQueryResult.results[0].title));
+    await waitFor(
+      () => expect(screen.getByTestId('product-detail-name')).toHaveTextContent(
+        mockedQueryResult.results[0].title,
+      ),
+    );
     fireEvent.click(screen.getByTestId('product-detail-add-to-cart'));
     fireEvent.click(screen.getByTestId('shopping-cart-button'));
     await waitFor(() => expect(screen.getAllByTestId('shopping-cart-product-name')));
-    expect(screen.getAllByTestId('shopping-cart-product-name')[0]).toHaveTextContent(mockedQueryResult.results[0].title);
-    expect(screen.getAllByTestId('shopping-cart-product-quantity')[0]).toHaveTextContent('1');
+    expect(screen.getAllByTestId('shopping-cart-product-name')[0]).toHaveTextContent(
+      mockedQueryResult.results[0].title,
+    );
+    expect(
+      screen.getAllByTestId('shopping-cart-product-quantity')[0],
+    ).toHaveTextContent('1');
   });
 });

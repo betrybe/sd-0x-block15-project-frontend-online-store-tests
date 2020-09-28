@@ -7,18 +7,21 @@ import mockedQueryResult from '../__mocks__/query';
 
 jest.mock('../services/api');
 api.getCategories.mockImplementation(
-  () => Promise.resolve(mockedCategoriesResult)
+  () => Promise.resolve(mockedCategoriesResult),
 );
 api.getProductsFromCategoryAndQuery.mockImplementation(
-  () => Promise.resolve(mockedQueryResult)
+  () => Promise.resolve(mockedQueryResult),
 );
 
 describe('Selecionar uma categoria e ver somente produtos daquela categoria', () => {
-  it('should search products by category and show them in the page', async () => {
+  it(`Filtra corretamente os produtos de uma página para exibir somente os daquela
+      categoria`, async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(api.getProductsFromCategoryAndQuery).toHaveBeenCalled());
-    expect(screen.getAllByTestId('product').length).toEqual(mockedQueryResult.results.length);
+    expect(screen.getAllByTestId('product').length).toEqual(
+      mockedQueryResult.results.length,
+    );
   });
 });

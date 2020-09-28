@@ -3,16 +3,18 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from '../App';
 
 describe('Criar página do carrinho de compras', () => {
-  it('should have shopping cart button', () => {
+  it('A home deve ter o botão do carrinho de compras', () => {
     render(<App />);
     expect(screen.getByTestId('shopping-cart-button')).toBeDefined();
   });
 
-  it('should visit and render message in shopping cart page', async () => {
+  it(`Clicar no botão deve levar à página do carrinho vazio, com a mensagem
+      'Seu carrinho está vazio' nela`, async () => {
     render(<App />);
     fireEvent.click(screen.getByTestId('shopping-cart-button'));
     await waitFor(() => screen.getByTestId('shopping-cart-empty-message'));
-    expect(screen.getByTestId('shopping-cart-empty-message')).toHaveTextContent('Seu carrinho está vazio')
+    expect(screen.getByTestId('shopping-cart-empty-message')).toHaveTextContent(
+      'Seu carrinho está vazio',
+    );
   });
 });
-
