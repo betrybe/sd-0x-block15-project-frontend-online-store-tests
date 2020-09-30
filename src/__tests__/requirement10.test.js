@@ -13,8 +13,7 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult),
 );
 
-describe(`Visualizar a lista de produtos adicionados ao carrinho em sua página e
-          manipular sua quantidade`, () => {
+describe(`Visualizar a lista de produtos adicionados ao carrinho em sua página e manipular sua quantidade`, () => {
   it('Adiciona produtos ao carrinho e manipula suas quantidades', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
