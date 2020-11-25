@@ -4,17 +4,8 @@ import App from '../App';
 import * as api from '../services/api';
 import mockedCategoriesResult from '../__mocks__/categories';
 
-jest.mock('../services/api');
-api.getCategories.mockImplementation(() => Promise.resolve([{
-  "id": "MLB5672",
-  "name": "Acessórios para Veículos"
-}, {
-  "id": "MLB271599",
-  "name": "Agro"
-}, {
-  "id": "MLB1403",
-  "name": "Alimentos e Bebidas"
-}]));
+api.getCategories = jest.fn();
+api.getCategories.mockImplementation(() => Promise.resolve(mockedCategoriesResult);
 
 describe(`Listar as categorias de produtos disponíveis via API na página principal`, () => {
   it(`Exibe as categorias retornadas pela API na página de listagem de
