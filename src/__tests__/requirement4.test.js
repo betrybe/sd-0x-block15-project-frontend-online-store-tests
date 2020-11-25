@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
-import CategoryList from '../src/components/CategoryList';
+import CategoryList from '../components/CategoryList';
 import * as api from '../services/api';
 import mockedCategoriesResult from '../__mocks__/categories';
 
