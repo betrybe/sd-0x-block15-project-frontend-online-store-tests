@@ -8,7 +8,6 @@ describe(`Listar as categorias de produtos disponíveis via API na página princ
   it(`Exibe as categorias retornadas pela API na página de listagem de
       produtos`, async () => {
     render(<CategoryList />);
-    await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     expect(screen.getAllByTestId('category').length).toEqual(
       mockedCategoriesResult.length,
     );
