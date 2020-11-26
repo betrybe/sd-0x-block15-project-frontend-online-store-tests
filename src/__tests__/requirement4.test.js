@@ -1,4 +1,4 @@
-jest.mock('../services/api');
+jest.mock('../services/api', () => ({ getCategories: jest.fn() }));
 
 import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
