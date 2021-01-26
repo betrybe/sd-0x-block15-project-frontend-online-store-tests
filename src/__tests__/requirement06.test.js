@@ -13,12 +13,15 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult),
 );
 
-describe('15 - Mostre quais produtos tem o frete grátis', () => {
-  it('Exibe corretmente a informação de frete grátis dos produtos', async () => {
+describe('6 - Selecione uma categoria e mostre somente os produtos daquela categoria', () => {
+  it(`Filtra corretamente os produtos de uma página para exibir somente os daquela
+      categoria`, async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
     await waitFor(() => expect(api.getProductsFromCategoryAndQuery).toHaveBeenCalled());
-    expect(screen.getAllByTestId('free-shipping').length).toBe(1);
+    expect(screen.getAllByTestId('product').length).toEqual(
+      mockedQueryResult.results.length,
+    );
   });
 });

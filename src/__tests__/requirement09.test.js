@@ -13,10 +13,8 @@ api.getProductsFromCategoryAndQuery.mockImplementation(
   () => Promise.resolve(mockedQueryResult),
 );
 
-describe(`11 - Avalie e comente acerca de um produto em sua tela de exibição detalhada`, () => {
-  it('Avalia um produto na sua tela de detalhes', async () => {
-    const evaluationContent = `Esta é uma avaliação sobre o produto realizada na
-                           tela de detalhe.`;
+describe(`9 - Adicione um produto ao carrinho a partir de sua tela de exibição detalhada`, () => {
+  it('Adiciona um produto ao carrinho da sua tela de detalhes', async () => {
     render(<App />);
     await waitFor(() => expect(api.getCategories).toHaveBeenCalled());
     fireEvent.click(screen.getAllByTestId('category')[0]);
@@ -27,12 +25,14 @@ describe(`11 - Avalie e comente acerca de um produto em sua tela de exibição d
         mockedQueryResult.results[0].title,
       ),
     );
-    fireEvent.change(
-      screen.getByTestId('product-detail-evaluation'),
-      { target: { value: evaluationContent } },
+    fireEvent.click(screen.getByTestId('product-detail-add-to-cart'));
+    fireEvent.click(screen.getByTestId('shopping-cart-button'));
+    await waitFor(() => expect(screen.getAllByTestId('shopping-cart-product-name')));
+    expect(screen.getAllByTestId('shopping-cart-product-name')[0]).toHaveTextContent(
+      mockedQueryResult.results[0].title,
     );
-    expect(screen.getByTestId('product-detail-evaluation')).toHaveValue(
-      evaluationContent,
-    );
+    expect(
+      screen.getAllByTestId('shopping-cart-product-quantity')[0],
+    ).toHaveTextContent('1');
   });
 });
